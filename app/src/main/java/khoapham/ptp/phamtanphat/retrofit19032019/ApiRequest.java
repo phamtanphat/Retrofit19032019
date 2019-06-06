@@ -5,5 +5,5 @@ import retrofit2.http.GET;
 
 public interface ApiRequest {
     @GET("demo1.json")
-
+    Call
 }
