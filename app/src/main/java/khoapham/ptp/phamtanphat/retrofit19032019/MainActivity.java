@@ -27,6 +27,33 @@ public class MainActivity extends AppCompatActivity {
         //Khoi tao request
         ApiRequest apiRequest = retrofit.create(ApiRequest.class);
         //Goi phuong thuc request len server
+        Call<Demo2> callbackdemo2 = apiRequest.getDemo2();
+        //Lay du lieu thong qua callbackfunction
+        callbackdemo2.enqueue(new Callback<Demo2>() {
+            @Override
+            public void onResponse(Call<Demo2> call, Response<Demo2> response) {
+                Demo2 demo2 = response.body();
+                Log.d("BBB",demo2.getDanhsach().get(0).getKhoahoc() + "");
+            }
+
+            @Override
+            public void onFailure(Call<Demo2> call, Throwable t) {
+
+            }
+        });
+
+    }
+    private void demo1(){
+        //Khoi tao request
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://khoapham.vn/KhoaPhamTraining/json/tien/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        //Khoi tao phuong thuc truy cap ben phia server
+//            Khoi tao ra interface
+        //Khoi tao request
+        ApiRequest apiRequest = retrofit.create(ApiRequest.class);
+        //Goi phuong thuc request len server
         Call<Demo1> callbackdemo1 = apiRequest.getDemo1();
         //Lay du lieu thong qua callbackfunction
         callbackdemo1.enqueue(new Callback<Demo1>() {
@@ -41,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
 }
