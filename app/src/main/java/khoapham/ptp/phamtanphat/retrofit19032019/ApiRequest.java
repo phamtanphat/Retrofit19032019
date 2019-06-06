@@ -11,4 +11,7 @@ public interface ApiRequest {
 
     @GET("demo2.json")
     Call<Demo2> getDemo2();
+
+    @GET("demo3.json")
+    Call<Demo3> getDemo3();
 }
